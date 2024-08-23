@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Message Box</h2>
+        <textarea id="message" rows="5" placeholder="Type your message..."></textarea>
+        <div id="counter">
+            <span id="charCount">0</span>/200 characters
+        </div>
+        <div id="warning" class="warning"></div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:linear-gradient(pink,violet);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background:linear-gradient(rgba(0, 0, 255, 0.458),powderblue);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+#counter {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.warning {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: none;
+}
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const messageInput = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const warning = document.getElementById('warning');
+
+    const maxChars = 200;
+
+    messageInput.addEventListener('input', () => {
+        const currentLength = messageInput.value.length;
+        charCount.textContent = currentLength;
+
+        if (currentLength > maxChars) {
+            warning.textContent = 'You have exceeded the character limit!';
+            warning.style.display = 'block';
+            messageInput.value = messageInput.value.substring(0, maxChars);
+            charCount.textContent = maxChars;
+        } else {
+            warning.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
+
